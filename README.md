@@ -11,7 +11,8 @@ THE USAGE OF THIS SAMPLE IS AT YOUR OWN RISK AND **THERE IS NO SUPPORT** RELATED
 
 ## Description
 
-This repository contains various Package Service Offerings (PSO)
+This repository contains various Package Service Offerings (PSO).  
+Please contact sales@coolorange.com for more details.
 
 ## At your own risk
 The usage of these samples is at your own risk. There is no free support related to the samples. However, if you have questions to powerJobs, then visit http://www.coolorange.com/wiki or start a conversation in our support forum at http://support.coolorange.com/support/discussions
