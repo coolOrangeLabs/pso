@@ -23,6 +23,9 @@ function RestrictUpdateFileStates($files) {
 }
 
 function RestrictCheckOutFiles($files) {
+    if ($processName -eq "Connectivity.JobProcessor.Delegate.Host") {
+        return
+    }
     foreach ($file in $files) {
         $jobs = @(GetRelatedJobs -file $file)
         if ($jobs.Count -gt 0) {
