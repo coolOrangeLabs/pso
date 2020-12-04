@@ -23,7 +23,7 @@ The current workflows are:
 You can configure the outpuut loaction for the PDF, DXF or STEP file with setting varialbles in the header of the script file:
 * To add the created file to Vault: $addToVault = $true
 * The created file is **not** added to Vault:***$addToVault = $false***
-
+_
 
 * To add the created file to Vault as attachment: ***$addAsAttachment = $true***
 * The created file is added to Vault **not** as an attachment:***$addAsAttachment = $false***
