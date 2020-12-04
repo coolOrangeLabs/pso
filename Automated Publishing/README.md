@@ -21,21 +21,18 @@ The current workflows are:
 ## Configuration
 
 You can configure the outpuut loaction for the PDF, DXF or STEP file with setting varialbles in the header of the script file:
+#### $addToVault
 * To add the created file to Vault: $addToVault = $true
 * The created file is **not** added to Vault:***$addToVault = $false***
 
-
-
-
-
+#### $addAsAttachment
 * To add the created file to Vault as attachment: ***$addAsAttachment = $true***
 * The created file is added to Vault **not** as an attachment:***$addAsAttachment = $false***
 
-
+#### $vaultFolder
 * To add the created file into the same folder in Vault as the main file: ***$vaultFolder = ""***
 * Or specify the vault folder where the created file should be located, e.g.: ***$vaultFolder = "$/Designs/Public/PDF/"***
 
-
+#### $networkFolder
 * The created file is **not** copied to a network folder: ***$networkFolder = ""***
 * The created file is copied to the specified network folder, if this exists, e.g.: ***$networkFolder ="\\SERVER1\Share\Public\PDFs\"***
-
