@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<qJob>
+  <!--
+  Name: Name of the job. For coolOrange jobs, the name should be without the .ps1 extension
+  Priority: Job priority. Lower the value, higher is the job priority.
+  Description: Job description
+  Param: Set of parameters which you want to pass to the job. Can be zeor or more. For params other than standard ones, the job should be able to receive and process it. 
+  -->
+  <Jobs>
+    <SyncPropertiesAndCreateDWFJob Name="autodesk.vault.syncproperties" Priority="1" Description="sync properties and create DWF">
+      <Param Key="QueueCreateDwfJobOnCompletion">True</Param>
+    </SyncPropertiesAndCreateDWFJob>
+    <SyncPropertiesJob Name="autodesk.vault.syncproperties" Priority="1" Description="sync properties"></SyncPropertiesJob>
+    <PublishPDFJob Name="PublishPDF" Priority="1" Description="powerJobs Publish PDF" />
+    <PublishDXFJob Name="PublishDXF" Priority="1" Description="powerJobs Publish DXF" />
+    <PublishSTEPJob Name="PublishSTEP" Priority="1" Description="powerJobs Publish STEP" />
+  </Jobs>
+  <!--
+  Label: Label string for the command, must be quoted
+  Description: Description text for the menucommand. Must be quoted
+  Hint: Hint string, must be quoted
+  Image: Name of a bitmap file that contains the image for the menu command. Image should be 16x16 or 32x32, value must be quoted.
+  ToolbarPaintStyle: Controls how the item is drawn on toolbars, values are Text, Glyph, TextAndGlyph
+  NavigationTypes: comma separated list of entities for which this command should be active. Values are Bom, ChangeOrder, File, FileVersion, Folder, Item, Other. If the type is custom object, then use the defintion name (GUID) of the custom object.
+  MultiSelectEnabled: If true, command is active for multiple selections, can be true or false
+  Child job elements that this menu item will trigger. Name should be same as one of the name of Jobs. Can be zero or more child elements.
+  -->
+  <MenuItem>
+    <SyncPropertiesAndCreateDWF Label="sync properties and create DWF" Description="sync properties and create DWF" Hint="sync properties and create DWF" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File" MultiSelectEnabled="False">
+      <SyncPropertiesAndCreateDWFJob />
+    </SyncPropertiesAndCreateDWF>
+    <SyncProperties Label="sync properties" Description="sync properties" Hint="sync properties" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File" MultiSelectEnabled="False">
+      <SyncPropertiesJob />
+    </SyncProperties>
+    <PublishPDF Label="Publish PDF" Description="powerJobs Publish PDF" Hint="Publish PDF with powerJobs" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File" MultiSelectEnabled="False">
+      <PublishPDFJob />
+    </PublishPDF>
+    <PublishDXF Label="Publish DXF" Description="powerJobs Publish DXF" Hint="Publish DXF with powerJobs" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File" MultiSelectEnabled="False">
+      <PublishDXFJob />
+    </PublishDXF>
+    <PublishSTEP Label="Publish STEP" Description="powerJobs Publish STEP" Hint="Publish STEP with powerJobs" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File" MultiSelectEnabled="False">
+      <PublishSTEPJob />
+    </PublishSTEP>
+  </MenuItem>
+  <!--
+  Label:  String displayed as the label, e.g. for submenus, quoted
+  DeployAsPulldown: If true, used as submenu, values are true or false
+  Location: Specifies the location of the command site within the Vault CLient UI, values are
+  StandardToolbar, AdvancedToolbar, BehaviorsToolbar, ItemBomToolbar,
+  FileMenu, EditMenu, ActionsMenu, ToolsMenu, HelpMenu, FileContextMenu, FolderContextMenu, ChangeOrderContextMenu, ItemContextMenu
+  For Custom Objects, use the defintion name (GUID) of the custom object.
+  Child elements that will be added to the command sites. Name should be same as one of the name of MenuItems. Can be zero or more child elements.
+  -->
+  <CommandSite>
+    <FileContext Label="qJob" DeployAsPullDown="False" Location="FileContextMenu">
+      <SyncPropertiesAndCreateDWF />
+      <SyncProperties />
+      <PublishPDF />
+      <PublishDXF />
+      <PublishSTEP />
+    </FileContext>
+  </CommandSite>
+</qJob>
