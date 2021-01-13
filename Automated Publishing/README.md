@@ -13,9 +13,10 @@ The current workflows are:
 * Creation of DXFs from AutoCAD DWGs, Inventor drawings (DWG and IDW) and sheet metal IPTs
 * Creation of a STEP from Inventor assemblies (IAMs) and parts (IPTs)
 * Restrict check-out or status change, when a job in in the Job Queue for this file
+* Extend Vault file context menu with publish commands (Publish PDF, Publish DXF, Publish STEP)
 
 ## Installation
-* Downöload the ZIP file from the Releases area and extract the ZIP 
+* Download the ZIP file from the 'Releases' area and extract the ZIP 
 * Copy the ps1 files located in .\powerJobs\Jobs to “C:\ProgramData\coolOrange\powerJobs\Jobs” of your PowerJobs Processor machine
 * Copy the ps1 files located in .\powerEvents\Jobs to “C:\ProgramData\coolOrange\powerEvents\Events” of your Vault client machine(s)
 * Copy the ps1 files located in .\qJob\menu to “C:\ProgramData\Autodesk\ApplicationPlugins\coolOrange.qJob.bundle\<Vault version>
