@@ -12,7 +12,7 @@ The current workflows are:
 * Creation of a PDF from AutoCAD DWGs, Inventor drawings (DWG and IDW)
 * Creation of DXFs from AutoCAD DWGs, Inventor drawings (DWG and IDW) and sheet metal IPTs
 * Creation of a STEP from Inventor assemblies (IAMs) and parts (IPTs)
-* Restrict check-out or status change, when a job in in the Job Queue for this file
+* Restrict check-out or status change, when a job is in the Job Queue for this file
 * Extend Vault file context menu with publish commands (Publish PDF, Publish DXF, Publish STEP)
 
 ## Installation
