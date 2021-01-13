@@ -15,8 +15,11 @@ The current workflows are:
 * Restrict check-out or status change, when a job in in the Job Queue for this file
 
 ## Installation
+* Downöload the ZIP file from the Releases area and extract the ZIP 
 * Copy the ps1 files located in .\powerJobs\Jobs to “C:\ProgramData\coolOrange\powerJobs\Jobs” of your PowerJobs Processor machine
 * Copy the ps1 files located in .\powerEvents\Jobs to “C:\ProgramData\coolOrange\powerEvents\Events” of your Vault client machine(s)
+* Copy the ps1 files located in .\qJob\menu to “C:\ProgramData\Autodesk\ApplicationPlugins\coolOrange.qJob.bundle\<Vault version>
+” of your Vault client machine(s)
 
 ## Configuration
 
