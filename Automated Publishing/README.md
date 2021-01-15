@@ -18,13 +18,13 @@ The current workflows are:
 ## Installation
 * Download the ZIP file from the 'Releases' area and extract the ZIP 
 * Copy the ps1 files located in .\powerJobs\Jobs to “C:\ProgramData\coolOrange\powerJobs\Jobs” of your PowerJobs Processor machine
-* Copy the ps1 files located in .\powerEvents\Jobs to “C:\ProgramData\coolOrange\powerEvents\Events” of your Vault client machine(s)
-* Copy the ps1 files located in .\qJob\menu to “C:\ProgramData\Autodesk\ApplicationPlugins\coolOrange.qJob.bundle\<Vault version>” of your Vault client machine(s)
+* Copy the script file PublishRestrictions.ps1 located in .\powerEvents\Jobs to “C:\ProgramData\coolOrange\powerEvents\Events” of your Vault client machine(s)
+* Copy the MenuSettings.xml file located in .\qJob\menu to “C:\ProgramData\Autodesk\ApplicationPlugins\coolOrange.qJob.bundle\<Vault version>” of your Vault client machine(s)
 
 ## Configuration
 The output of the neutral format can be controlled via INI files that are called in the scripts. Consult the powerJobs documentation on https://www.coolorange.com/wiki/doku.php?id=powerjobs_processor.
 
-Additionally you can configure the ***outpuut loaction*** for the PDF, DXF or STEP file with setting varialbles in the header of the script file:
+Additionally you can configure the ***output location*** for the PDF, DXF or STEP file with setting variables in the header of the script file:
 #### $addToVault
 * To add the created file to Vault: $addToVault = $true
 * The created file is **not** added to Vault:***$addToVault = $false***
