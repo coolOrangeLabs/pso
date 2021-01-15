@@ -22,8 +22,9 @@ The current workflows are:
 * Copy the ps1 files located in .\qJob\menu to “C:\ProgramData\Autodesk\ApplicationPlugins\coolOrange.qJob.bundle\<Vault version>” of your Vault client machine(s)
 
 ## Configuration
+The output of the neutral format can be controlled via INI files that are called in the scripts. Consult the powerJobs documentation on https://www.coolorange.com/wiki/doku.php?id=powerjobs_processor.
 
-You can configure the outpuut loaction for the PDF, DXF or STEP file with setting varialbles in the header of the script file:
+Additionally you can configure the ***outpuut loaction*** for the PDF, DXF or STEP file with setting varialbles in the header of the script file:
 #### $addToVault
 * To add the created file to Vault: $addToVault = $true
 * The created file is **not** added to Vault:***$addToVault = $false***
