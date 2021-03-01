@@ -35,7 +35,8 @@ Additionally you can configure the ***output location*** for the PDF, DXF or STE
 
 #### $vaultFolder
 * To add the created file into the same folder in Vault as the main file: ***$vaultFolder = ""***
-* Or specify the vault folder where the created file should be located, e.g.: ***$vaultFolder = "$/Designs/Public/PDF/"***
+* Or specify the vault folder where the created file should be located, e.g.: ***$vaultFolder = "$/Designs/Public/PDF/"***  
+***Attention: Please avoid to store too many files in the same Vault folder***
 
 #### $networkFolder
 * The created file is **not** copied to a network folder: ***$networkFolder = ""***
