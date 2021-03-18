@@ -9,7 +9,7 @@ THE USAGE OF THIS SAMPLE IS AT YOUR OWN RISK AND THERE IS NO SUPPORT RELATED TO 
 ## Description
 The Automated Publishing PSO provides a set of predefined workflows to automate the creation of common neutral output format. 
 The current workflows are:
-* Creation of a PDF from AutoCAD DWGs, Inventor drawings (DWG and IDW)
+* Creation of a PDF from Inventor drawings (DWG and IDW)
 * Creation of DXFs from AutoCAD DWGs, Inventor drawings (DWG and IDW) and sheet metal IPTs
 * Creation of a STEP from Inventor assemblies (IAMs) and parts (IPTs)
 * Restrict check-out or status change, when a job is in the Job Queue for this file
