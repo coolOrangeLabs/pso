@@ -40,31 +40,31 @@ if (-not $addToVault -and -not $networkFolder) {
     throw("ERROR: No output for the DXF is defined in ps1 file!")
 }
 
-if( @("idw","dwg","ipt") -notcontains $file._Extension ) {
+if ( @("idw", "dwg", "ipt") -notcontains $file._Extension ) {
     Write-Host "Files with extension: '$($file._Extension)' are not supported"
     return
 }
 
 $downloadedFiles = Save-VaultFile -File $file._FullPath -DownloadDirectory $workingDirectory -ExcludeChildren:$fastOpen -ExcludeLibraryContents:$fastOpen
 $file = $downloadedFiles | Select-Object -First 1
-$openResult = Open-Document -LocalFile $file.LocalPath -Options @{ FastOpen = $fastOpen }
-
-if($openResult) {
-   if($file._Extension -eq "ipt") {
-        $configFile = "$($env:POWERJOBS_MODULESDIR)Export\DXF_SheetMetal.ini" 
-   } else {
+$openResult = Open-Document -LocalFile $file.LocalPath -Options @{ FastOpen = $fastOpen } -application Inventor
+$openResult.Application.Instance.Visible = $true
+if ($openResult) {
+    if ($file._Extension -eq "ipt") {
+        $configFile = "$($env:POWERJOBS_MODULESDIR)Export\DXF_SheetMetal.ini"
+    } else {
         $configFile = "$($env:POWERJOBS_MODULESDIR)Export\DXF_2D.ini" 
-   }  
-   $exportResult = Export-Document -Format 'DXF' -To $localDXFfileLocation -Options $configFile 
-   if($exportResult) {
-        $localDXFfiles = Get-ChildItem -Path (split-path -path $localDXFfileLocation) | Where-Object { $_.Name -match '^'+[System.IO.Path]::GetFileNameWithoutExtension($localDXFfileLocation)+'.*(.dxf|.zip)$' }
-        $vaultFolder = (Split-Path $vaultDXFfileLocation).Replace('\','/')
+    }
+    $exportResult = Export-Document -Format 'DXF' -To $localDXFfileLocation -Options $configFile 
+    if ($exportResult) {
+        $localDXFfiles = Get-ChildItem -Path (split-path -path $localDXFfileLocation) | Where-Object { $_.Name -match '^' + [System.IO.Path]::GetFileNameWithoutExtension($localDXFfileLocation) + '.*(.dxf|.zip)$' }
+        $vaultFolder = (Split-Path $vaultDXFfileLocation).Replace('\', '/')
         $DXFfiles = @()
         #Add DXF to Vault
         if ($addToVault) {
-            foreach($localDXFfile in $localDXFfiles)  {
-                $DXFfile = Add-VaultFile -From $localDXFfile._FullName -To ($vaultFolder+"/"+$localDXFfile._Name) -FileClassification DesignVisualization -Hidden $hideDXF
-				Write-Host "Add DXF '$($file._Name).dxf' to Vault: " $vaultDXFfileLocation
+            foreach ($localDXFfile in $localDXFfiles) {
+                $DXFfile = Add-VaultFile -From $localDXFfile.FullName -To ($vaultFolder + "/" + $localDXFfile.Name) -FileClassification DesignVisualization -Hidden $hideDXF
+                Write-Host "Add DXF '$($localDXFfile.Name).dxf' to Vault: " $vaultDXFfileLocation
                 $DXFfiles += $DXFfile._FullPath
             }
             if ($addAsAttachment) {
@@ -77,26 +77,26 @@ if($openResult) {
                 $copyResult = $false
             }
             else {
-                foreach($localDXFfile in $localDXFfiles)  {
-                    Copy-Item -Path $localDXFfile._FullName -Destination $networkFolder
-                    Write-Host "Copied DXF '$($localDXFfile._Name)' to folder: " $networkFolder
+                foreach ($localDXFfile in $localDXFfiles) {
+                    Copy-Item -Path $localDXFfile.FullName -Destination $networkFolder
+                    Write-Host "Copied DXF '$($localDXFfile.Name)' to folder: " $networkFolder
                 }
                 $copyResult = $true
             }
         }
-   } 
-   $closeResult = Close-Document
+    } 
+    $closeResult = Close-Document
 }
 
 Clean-Up -folder $workingDirectory
 
-if(-not $openResult) {
+if (-not $openResult) {
     throw("Failed to open document $($file.LocalPath)! Reason: $($openResult.Error.Message)")
 }
-if(-not $exportResult) {
+if (-not $exportResult) {
     throw("Failed to export document $($file.LocalPath) to $localDXFfileLocation! Reason: $($exportResult.Error.Message)")
 }
-if(-not $closeResult) {
+if (-not $closeResult) {
     throw("Failed to close document $($file.LocalPath)! Reason: $($closeResult.Error.Message))")
 }
 if ($networkFolder -and -not $copyResult) {
