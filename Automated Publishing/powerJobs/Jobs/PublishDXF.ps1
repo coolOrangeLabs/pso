@@ -47,15 +47,20 @@ if ( @("idw", "dwg", "ipt") -notcontains $file._Extension ) {
 
 $downloadedFiles = Save-VaultFile -File $file._FullPath -DownloadDirectory $workingDirectory -ExcludeChildren:$fastOpen -ExcludeLibraryContents:$fastOpen
 $file = $downloadedFiles | Select-Object -First 1
-$openResult = Open-Document -LocalFile $file.LocalPath -Options @{ FastOpen = $fastOpen } -application Inventor
-$openResult.Application.Instance.Visible = $true
+$openResult = Open-Document -LocalFile $file.LocalPath -Options @{ FastOpen = $fastOpen } #-application Inventor
 if ($openResult) {
     if ($file._Extension -eq "ipt") {
-        $configFile = "$($env:POWERJOBS_MODULESDIR)Export\DXF_SheetMetal.ini"
+        if ($openResult.Document.Instance.ComponentDefinition.Type -eq [Inventor.ObjectTypeEnum]::kSheetMetalComponentDefinitionObject) {
+            $configFile = "$($env:POWERJOBS_MODULESDIR)Export\DXF_SheetMetal.ini"
+            $exportResult = Export-Document -Format 'DXF' -To $localDXFfileLocation -Options $configFile 
+        } else {
+            Write-Host "'$($file._Name)' is not a sheet metal part!"
+        }
     } else {
         $configFile = "$($env:POWERJOBS_MODULESDIR)Export\DXF_2D.ini" 
+        $exportResult = Export-Document -Format 'DXF' -To $localDXFfileLocation -Options $configFile 
     }
-    $exportResult = Export-Document -Format 'DXF' -To $localDXFfileLocation -Options $configFile 
+    
     if ($exportResult) {
         $localDXFfiles = Get-ChildItem -Path (split-path -path $localDXFfileLocation) | Where-Object { $_.Name -match '^' + [System.IO.Path]::GetFileNameWithoutExtension($localDXFfileLocation) + '.*(.dxf|.zip)$' }
         $vaultFolder = (Split-Path $vaultDXFfileLocation).Replace('\', '/')
