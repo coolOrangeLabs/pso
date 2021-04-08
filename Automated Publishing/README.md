@@ -19,6 +19,9 @@ The current workflows are:
 ## Prerequisite
 To use the full functionality of the Automated Publishing PSO the coolOrange powerJobs Processor must be installed on the Jobprocessor machine. And on each Vault Client machine  powerEvents, powerJobs Client and qJob must be installed.
 
+**Note:** In order to create correct neutral file formats the "Sychronize Properties" must be called, before the neutral format is created.
+That this is done, when the job is triggered from a status change, make sure that for this status change the **"Synchronize properties using Job Server"** is activated at the Actions for this Transition in the Vault configuration!
+
 ## Installation
 * Download the ZIP file from the 'Releases' area and extract the ZIP 
 * Copy the ps1 files located in *.\powerJobs\Jobs* to “*C:\ProgramData\coolOrange\powerJobs\Jobs*” of your PowerJobs Processor machine
@@ -55,6 +58,16 @@ Per default the following jobs are added to the Vault Job Queue when the event f
 * "PublishDXF" for files with extension "idw", "dwg" and "ipt"
 * "PublishPDF" for files with extension "idw" and "dwg"
 * "PublishSTEP" for files with extension "iam" and "ipt"
+
+**Note:** For AutoCAD DWG files no DXF is created! If you are using AutoCAD DWG files but no Inventor DWG files remove the extension "dwg" in the header of the *PublishAutomations.ps1* from the line 
+
+`$supportedExtensions = @("idw","dwg","ipt","iam")`.
+
+If a job for a format should not be added to the Job Queue, comment out the line that begins with *Add-VaultJob -Name "Publish..."* with "#".
+
+For example, if you want not to create STEP files, when an Inventor file is released comment out the line:
+
+`#           Add-VaultJob -Name "PublishSTEP" -Parameters @{ "EntityId" = $file.Id; "EntityClassId" = "FILE" } -Description "Publish STEP for file '$($file._Name)'"`
 
 ## Configuration of the context menu
 Per default you will have the commands "PublishPDF", "PublishDXF" and "PublishSTEP" on the file context menu in Vault after installing the MenuSettings.xml file.
