@@ -20,4 +20,6 @@ The usage of these samples is at your own risk. There is no free support related
 ## Author
 coolOrange s.r.l.  
 
-![coolOrange](https://user-images.githubusercontent.com/36075173/46519882-4b518880-c87a-11e8-8dab-dffe826a9630.png)
+![coolOrange](https://i.ibb.co/NmnmjDT/Logo-CO-Full-colore-RGB-short-Payoff.png)
+
+
