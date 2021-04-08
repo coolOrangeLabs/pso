@@ -51,7 +51,7 @@ Additionally you can configure the ***output location*** for the PDF, DXF or STE
 
 ## Configuration of the powerEvents scripts
 ### Unregister events 
-Per default the events for 'RestrictUpdateFileStates', 'RestrictCheckOutFiles' and 'SubmitPublishJobs' are registered after installation. If they should be deactivated you must uncomment the Register-VaultEvent with '#' at the begining of the line in the header of the script files.
+Per default the events for 'RestrictUpdateFileStates', 'RestrictCheckOutFiles' and 'SubmitPublishJobs' are registered after installation. If they should be deactivated you must uncomment the Register-VaultEvent with '#' at the beginning of the line in the header of the script files.
 
 ### Configuration of adding jobs to  the Vault Job Queue
 Per default the following jobs are added to the Vault Job Queue when the event for the function 'SubmitPublishJobs'.
